@@ -1,0 +1,3 @@
+package utilities
+
+func SendQRCode() {}

@@ -1,11 +1,20 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"log"
 
+	"example.com/ticket/controller"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+)
+func init() {
+		err := godotenv.Load()
+	if err != nil {
+		log.Println("Error loading .env file")
+	}
+}
 func main() {
 	server := gin.Default()
-	server.GET("/ping", func(context *gin.Context) {
-		context.JSON(200, gin.H{"message": "Pong"})
-	})
+	server.POST("/sms/send", controller.SendSmsHandler)
 	server.Run()
 }
